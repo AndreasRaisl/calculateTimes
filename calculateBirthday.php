@@ -1,16 +1,25 @@
 <?php
   setlocale(LC_ALL,"deu_deu");
   date_default_timezone_set("Europe/Berlin");
+  
+  $germanDaynames = array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
+
   $dayToday=strftime("%A");
   $timestamp_in_one_year=strtotime('+1year');
   $dayNextYear = strftime("%A",$timestamp_in_one_year);
+  
 
   $birthdayDay = $_POST['birthdayDay'];
   $birthdayMonth = $_POST['birthdayMonth'];
   $birthdayYear = $_POST['birthdayYear'];
   $birthdayString = "$birthdayDay.$birthdayMonth.$birthdayYear";
   $birthdayTimestamp = strtotime($birthdayString)."<br />";
-  $birthdayWeekday = strftime("%A", $birthdayTimestamp);    
+  $birthdayWeekdayNumber = date("w", $birthdayTimestamp);
+  $birthdayWeekdayGerman = $germanDaynames[$birthdayWeekdayNumber];
+
+
+
+  //$birthdayWeekday = strftime("%A", $birthdayTimestamp);    
   
   $handle=fopen("besucherzaehler.txt", "r");
   $visitorsBefore=fread($handle, filesize("besucherzaehler.txt"));
@@ -32,7 +41,7 @@
 
     <div class="mainInfoBox">
       <h1> Geburtstag </h1>      
-      <h3> Ihr Geburtstag war an einem <?php echo $birthdayWeekday; ?> </h3> 
+      <h3> Ihr Geburtstag war an einem <?php echo $birthdayWeekdayGerman; ?> </h3> 
     </div> 
     
     <div class="extraInfoBox">
