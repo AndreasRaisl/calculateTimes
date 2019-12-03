@@ -14,7 +14,7 @@
 		$date = date("d.m.Y", $timestamp);
 		$numberOfWeekday = date("w", $timestamp);
 		$wochentag = $deutscheWochentage[$numberOfWeekday];
-		echo "$wochentag, der $date";	
+		echo "$wochentag, der wunderbare $date";	
 	}
 ?>
 
