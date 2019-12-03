@@ -21,13 +21,12 @@
 <div class='menu-container'>
 	<div class='menu'>
 		<div class='date'> <?php echo showDateGerman(); ?> </div>
-		<div class="signupandlogin">
+		<!-- <div class="signupandlogin">
 			<div class='signup'> <a href="#RegistrationHeader">Sign Up</a></div>
 			<div class='login'> <a href="#LoginHeader">Login</a> </div>
-	  </div>
+	  </div> -->
 	</div>
 </div>
-
 
 
 <div class="registration-container">

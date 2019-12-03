@@ -4,10 +4,13 @@
   
   $germanDaynames = array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
 
-  $dayToday=strftime("%A");
-  $timestamp_in_one_year=strtotime('+1year');
-  $dayNextYear = strftime("%A",$timestamp_in_one_year);
-  
+  //$dayToday=strftime("%A");
+  $dayTodayNumber = date("w");
+  $dayTodayGerman = $germanDaynames[$dayTodayNumber];
+  $timestampInOneYear = strtotime('+1year');
+  //$dayNextYear = strftime("%A",$timestamp_in_one_year);
+  $dayNextYearNumber = date("w", $timestampInOneYear);
+  $dayNextYearGerman = $germanDaynames[$dayNextYearNumber];
 
   $birthdayDay = $_POST['birthdayDay'];
   $birthdayMonth = $_POST['birthdayMonth'];
@@ -16,7 +19,6 @@
   $birthdayTimestamp = strtotime($birthdayString)."<br />";
   $birthdayWeekdayNumber = date("w", $birthdayTimestamp);
   $birthdayWeekdayGerman = $germanDaynames[$birthdayWeekdayNumber];
-
 
 
   //$birthdayWeekday = strftime("%A", $birthdayTimestamp);    
