@@ -3,7 +3,7 @@
 <head>
 	<title> Geburtstag berechnen - Eingabeseite </title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="formBirthdayCalcStyles.css">	
+	<link rel="stylesheet" href="formStyles.css">	
 </head>
 
 <body>
