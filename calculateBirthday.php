@@ -48,8 +48,8 @@
     
     <div class="extraInfoBox">
       <h1> Auch interessant </h1>
-      <p> Heute ist <?php echo $dayToday; ?> </p>     
-      <p> In einem Jahr ist <?php echo $dayNextYear; ?> </p>
+      <p> Heute ist <?php echo $dayTodayGerman; ?> </p>     
+      <p> In einem Jahr ist <?php echo $dayNextYearGerman; ?> </p>
       <p> Übrigens, vor Ihnen haben bereits  <?php echo $visitorsBefore; ?> Personen diesen Service genutzt. <br>
           Sie sind der <?php echo $visitorsNow; ?>. Nutzer. Die neue Zahl <?php echo $visitorsNow; ?> wurde gespeichert. </p>
       <p> Die aktuelle Uhrzeit ist jetzt: <?php echo date("H:i"); ?> </p>
