@@ -60,7 +60,8 @@
 			</div>
 
 			<?php
-				if($problem == 'year') echo '<p> Das Jahr muss ein Zahlenwert zwischen 1970 und 2020 sein </p>';
+				if($problem == 'year') echo '<p> Das Jahr muss ein Zahlenwert zwischen 1880 und 2020 sein <br>
+				                             Für Geburtsjahre ab 1970 ist auch die Eingabe  2 Ziffern möglich (88 statt 1988)  </p>';
 			?>
 			
 			<div class='form-row'>

@@ -23,7 +23,7 @@
       <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
       exit;
     }
-    else if($year < 1970 or $year > 2020) {
+    else if($year < 0 or ($year > 20 and $year < 70) or ($year > 99 and $year < 1880)  or $year > 2020) {
       $linkWithQueryString = 'index.php?day=' . $day . '&month=' . $month . '&year=' . $year . '&problem=year';	
       echo "Angaben sind fehlerhaft. Bitte zurück zur
       <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
