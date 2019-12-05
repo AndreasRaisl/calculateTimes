@@ -2,13 +2,34 @@
   setlocale(LC_ALL,"deu_deu");
   date_default_timezone_set("Europe/Berlin");
   
-  $germanDaynames = array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
+  $germanDaynames = array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");  
 
-  function validateDate($day, $month, $year) {
+  function handleInputErrors($day, $month, $year) {
     if($day == "" or $month == "" or $year == "") {
-      return false;      	
+      $linkWithQueryString = 'index.php?day=' . $day . '&month=' . $month . '&year=' . $year;	
+      echo "Angaben sind unvollständig. Bitte zurück zur
+      <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
+      exit;
     }
-    else return true;
+    else if($day <1 or $day > 31) {
+      $linkWithQueryString = 'index.php?day=' . $day . '&month=' . $month . '&year=' . $year . '&problem=day';	
+      echo "Angaben sind fehlerhaft. Bitte zurück zur
+      <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
+      exit;
+    }
+    else if($month < 1 or $month > 12) {
+      $linkWithQueryString = 'index.php?day=' . $day . '&month=' . $month . '&year=' . $year . '&problem=month';	
+      echo "Angaben sind fehlerhaft. Bitte zurück zur
+      <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
+      exit;
+    }
+    else if($year < 1970 or $year > 2020) {
+      $linkWithQueryString = 'index.php?day=' . $day . '&month=' . $month . '&year=' . $year . '&problem=year';	
+      echo "Angaben sind fehlerhaft. Bitte zurück zur
+      <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
+      exit;
+    }
+    else return;
   }
   
   //$dayToday=strftime("%A");
@@ -22,28 +43,22 @@
   $birthdayDay = $_POST['birthdayDay'];
   $birthdayMonth = $_POST['birthdayMonth'];
   $birthdayYear = $_POST['birthdayYear'];
-  if (validateDate($birthdayDay, $birthdayMonth, $birthdayYear)) {
-    $birthdayString = "$birthdayDay.$birthdayMonth.$birthdayYear";
-    $birthdayTimestamp = strtotime($birthdayString)."<br />";
-    $birthdayWeekdayNumber = date("w", $birthdayTimestamp);
-    $birthdayWeekdayGerman = $germanDaynames[$birthdayWeekdayNumber];
 
-    $handle=fopen("besucherzaehler.txt", "r");
-    $visitorsBefore=fread($handle, filesize("besucherzaehler.txt"));
-    fclose($handle);  
-    $visitorsNow = $visitorsBefore+1;    
-    $handle=fopen("besucherzaehler.txt","w");
-    fwrite($handle, $visitorsNow);
-    fclose($handle); 
-  } else {
-      $linkWithQueryString = 'index.php?day=' . $birthdayDay . '&month=' . $birthdayMonth . '&year=' . $birthdayYear;	
-      echo "Angaben sind unvollständig. Bitte zurück zur
-      <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
-      exit;
-  }
+  handleInputErrors($birthdayDay, $birthdayMonth, $birthdayYear);    
+    
+  $birthdayString = "$birthdayDay.$birthdayMonth.$birthdayYear";
+  $birthdayTimestamp = strtotime($birthdayString)."<br />";
+  $birthdayWeekdayNumber = date("w", $birthdayTimestamp);
+  $birthdayWeekdayGerman = $germanDaynames[$birthdayWeekdayNumber];
 
-  //$birthdayWeekday = strftime("%A", $birthdayTimestamp);    
-  
+  $handle=fopen("besucherzaehler.txt", "r");
+  $visitorsBefore=fread($handle, filesize("besucherzaehler.txt"));
+  fclose($handle);  
+  $visitorsNow = $visitorsBefore+1;    
+  $handle=fopen("besucherzaehler.txt","w");
+  fwrite($handle, $visitorsNow);
+  fclose($handle);
+  //$birthdayWeekday = strftime("%A", $birthdayTimestamp);  
 ?>
 
 

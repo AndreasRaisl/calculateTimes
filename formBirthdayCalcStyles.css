@@ -125,7 +125,7 @@ p {
 .form-row .checkbox-label {
   margin-bottom: 0;
 }
-.form-row button {
+.submitButton {
   font-size: 16px;
   font-weight: bold;
   color: #FFFFFF;

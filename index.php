@@ -16,6 +16,8 @@
 		$wochentag = $deutscheWochentage[$numberOfWeekday];
 		echo "Heute ist $wochentag, der  $date";	
 	}	
+	if(isset($_GET['problem'])) $problem = $_GET['problem'];
+	else $problem = "";		
 ?>
 
 <div class='menu-container'>
@@ -34,27 +36,38 @@
 		<p> Bitte geben Sie Tag, Monat und Jahr als Zahlenwerte an! </p>
 		<br> <br>
 
-		<form action="calculateBirthday.php" method="post" enctype="multipart/form-data" name="birthdayForm">
-		
-		<div class="form-row">
-			<label for="birthdayDay"> Tag </label>
-			<input id="birthdayDay" type="text" name="birthdayDay" size="2" value="<?php echo @$_GET['day']; ?>">
-		</div>
+		<form action="calculateBirthday.php" method="post" enctype="multipart/form-data" name="birthdayForm">		
+			<div class="form-row">
+				<label for="birthdayDay"> Tag </label>
+				<input type="text" name="birthdayDay" size="2" value="<?php echo @$_GET['day'];	?>">
+				<?php
+				if($problem == 'day') echo '<p> Der Tag muss ein Zahlenwert zwischen 1 und 31 sein </p>';
+				?>
+			</div>			
 
-		<div class="form-row">
-			<label for="birthdayMonth"> Monat </label>
-			<input type="text" name="birthdayMonth" id="birthdayMonth" value="<?php echo @$_GET['month']; ?>">
-		</div>
+			<div class="form-row">
+				<label for="birthdayMonth"> Monat </label>
+				<input type="text" name="birthdayMonth" value="<?php echo @$_GET['month']; ?>">
+			</div>
 
-		<div class="form-row">
-			<label for="birthdayYear"> Jahr </label>
-			<input type="text" name="birthdayYear" id="birthdayYear" value="<?php echo @$_GET['year']; ?>">
-		</div>
-		
-		<div class='form-row'>
-			<button>Tag berechnen</button>
-		</div>
+			<?php
+				if($problem == 'month') echo '<p> Der Monat muss ein Zahlenwert zwischen 1 und 12 sein </p>';
+			?>
 
-	</form>
+			<div class="form-row">
+				<label for="birthdayYear"> Jahr </label>
+				<input type="text" name="birthdayYear" value="<?php echo @$_GET['year']; ?>">
+			</div>
+
+			<?php
+				if($problem == 'year') echo '<p> Das Jahr muss ein Zahlenwert zwischen 1970 und 2020 sein </p>';
+			?>
+			
+			<div class='form-row'>
+				<!-- <button>Tag berechnen</button> -->
+				<input class="submitButton" type="submit" value="Tag berechnen">
+			</div>
+		</form>
+
 	</div>
 </div>
