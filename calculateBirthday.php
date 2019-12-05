@@ -4,6 +4,13 @@
   
   $germanDaynames = array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
 
+  function validateDate($day, $month, $year) {
+    if($day == "" or $month == "" or $year == "") {
+      return false;      	
+    }
+    else return true;
+  }
+  
   //$dayToday=strftime("%A");
   $dayTodayNumber = date("w");
   $dayTodayGerman = $germanDaynames[$dayTodayNumber];
@@ -15,21 +22,28 @@
   $birthdayDay = $_POST['birthdayDay'];
   $birthdayMonth = $_POST['birthdayMonth'];
   $birthdayYear = $_POST['birthdayYear'];
-  $birthdayString = "$birthdayDay.$birthdayMonth.$birthdayYear";
-  $birthdayTimestamp = strtotime($birthdayString)."<br />";
-  $birthdayWeekdayNumber = date("w", $birthdayTimestamp);
-  $birthdayWeekdayGerman = $germanDaynames[$birthdayWeekdayNumber];
+  if (validateDate($birthdayDay, $birthdayMonth, $birthdayYear)) {
+    $birthdayString = "$birthdayDay.$birthdayMonth.$birthdayYear";
+    $birthdayTimestamp = strtotime($birthdayString)."<br />";
+    $birthdayWeekdayNumber = date("w", $birthdayTimestamp);
+    $birthdayWeekdayGerman = $germanDaynames[$birthdayWeekdayNumber];
 
+    $handle=fopen("besucherzaehler.txt", "r");
+    $visitorsBefore=fread($handle, filesize("besucherzaehler.txt"));
+    fclose($handle);  
+    $visitorsNow = $visitorsBefore+1;    
+    $handle=fopen("besucherzaehler.txt","w");
+    fwrite($handle, $visitorsNow);
+    fclose($handle); 
+  } else {
+      $linkWithQueryString = 'index.php?day=' . $birthdayDay . '&month=' . $birthdayMonth . '&year=' . $birthdayYear;	
+      echo "Angaben sind unvollständig. Bitte zurück zur
+      <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
+      exit;
+  }
 
   //$birthdayWeekday = strftime("%A", $birthdayTimestamp);    
   
-  $handle=fopen("besucherzaehler.txt", "r");
-  $visitorsBefore=fread($handle, filesize("besucherzaehler.txt"));
-  fclose($handle);  
-  $visitorsNow = $visitorsBefore+1;    
-  $handle=fopen("besucherzaehler.txt","w");
-  fwrite($handle, $visitorsNow);
-  fclose($handle);  
 ?>
 
 
@@ -48,11 +62,14 @@
     
     <div class="extraInfoBox">
       <h1> Auch interessant </h1>
-      <p> Heute ist <?php echo $dayTodayGerman; ?> </p>     
-      <p> In einem Jahr ist <?php echo $dayNextYearGerman; ?> </p>
-      <p> Übrigens, vor Ihnen haben bereits  <?php echo $visitorsBefore; ?> Personen diesen Service genutzt. <br>
-          Sie sind der <?php echo $visitorsNow; ?>. Nutzer. Die neue Zahl <?php echo $visitorsNow; ?> wurde gespeichert. </p>
-      <p> Die aktuelle Uhrzeit ist jetzt: <?php echo date("H:i"); ?> </p>
+      <p> Heute ist <?php echo $dayTodayGerman; ?> </p> 
+      <p> Die aktuelle Uhrzeit ist jetzt: <?php echo date("H:i"); ?> </p>    
+      <p> In genau einem Jahr ist <?php echo $dayNextYearGerman; ?> </p>
+      <div class="innerInfoBox">
+        <p> Übrigens, vor Ihnen haben bereits  <?php echo $visitorsBefore; ?> Personen diesen Service genutzt. <br>
+            Sie sind der <?php echo $visitorsNow; ?>. Nutzer. Die neue Zahl <?php echo $visitorsNow; ?> wurde im Besucherzähler 
+            gespeichert. </p>
+      </div>       
     </div>
 
   </body>
