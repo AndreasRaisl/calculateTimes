@@ -15,7 +15,7 @@
 		$numberOfWeekday = date("w", $timestamp);
 		$wochentag = $deutscheWochentage[$numberOfWeekday];
 		echo "Heute ist $wochentag, der  $date";	
-	}
+	}	
 ?>
 
 <div class='menu-container'>
@@ -28,38 +28,33 @@
 	</div>
 </div>
 
-
 <div class="registration-container">
 	<div class="register">
-
 		<h2> Wochentag der Geburt berechnen </h2>
 		<p> Bitte geben Sie Tag, Monat und Jahr als Zahlenwerte an! </p>
-
 		<br> <br>
 
 		<form action="calculateBirthday.php" method="post" enctype="multipart/form-data" name="birthdayForm">
 		
 		<div class="form-row">
 			<label for="birthdayDay"> Tag </label>
-			<input id="birthdayDay" type="text" name="birthdayDay" size="2">
+			<input id="birthdayDay" type="text" name="birthdayDay" size="2" value="<?php echo @$_GET['day']; ?>">
 		</div>
 
 		<div class="form-row">
 			<label for="birthdayMonth"> Monat </label>
-			<input type="text" name="birthdayMonth" id="birthdayMonth">
+			<input type="text" name="birthdayMonth" id="birthdayMonth" value="<?php echo @$_GET['month']; ?>">
 		</div>
 
 		<div class="form-row">
 			<label for="birthdayYear"> Jahr </label>
-			<input type="text" name="birthdayYear" id="birthdayYear">
+			<input type="text" name="birthdayYear" id="birthdayYear" value="<?php echo @$_GET['year']; ?>">
+		</div>
+		
+		<div class='form-row'>
+			<button>Tag berechnen</button>
 		</div>
 
-		
-			<div class='form-row'>
-        <button>Tag berechnen</button>
-      </div>
-
 	</form>
-
 	</div>
-	</div>
+</div>
