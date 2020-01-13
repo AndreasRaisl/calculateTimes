@@ -85,6 +85,8 @@
             Sie sind der <?php echo $visitorsNow; ?>. Nutzer. Die neue Zahl <?php echo $visitorsNow; ?> wurde im Besucherzähler 
             gespeichert. </p>
       </div>       
+			<a href="index.php" class="submitButton"> weitere Berechnung </a>      
+      
     </div>
 
   </body>
