@@ -34,14 +34,6 @@ h1, h2, h3 {
   border-radius: 10px;
 }
 
-.form-row {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
 .submitButton {
   display: block;
   text-decoration: none;
@@ -58,6 +50,3 @@ h1, h2, h3 {
   margin-top: 25px;
 }
 
-.test {
-  color: red;
-}
