@@ -11,13 +11,13 @@
       <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
       exit;
     }
-    else if($day <1 or $day > 31) {
+    else if($day <1 or $day > 31 or ctype_digit($day) == false) {
       $linkWithQueryString = 'index.php?day=' . $day . '&month=' . $month . '&year=' . $year . '&problem=day';	
       echo "Angaben sind fehlerhaft. Bitte zurück zur
       <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";
       exit;
     }
-    else if($month < 1 or $month > 12) {
+    else if($month < 1 or $month > 12 or ctype_digit($month) == false) {
       $linkWithQueryString = 'index.php?day=' . $day . '&month=' . $month . '&year=' . $year . '&problem=month';	
       echo "Angaben sind fehlerhaft. Bitte zurück zur
       <a href='" . $linkWithQueryString . "'> Eingabemaske </a> <br>";

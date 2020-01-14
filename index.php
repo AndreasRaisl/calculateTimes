@@ -41,7 +41,7 @@
 				<label for="birthdayDay"> Tag </label>
 				<input type="text" name="birthdayDay" size="2" value="<?php echo @$_GET['day'];	?>">
 				<?php
-				if($problem == 'day') echo '<p> Der Tag muss ein Zahlenwert zwischen 1 und 31 sein </p>';
+				if($problem == 'day') echo '<p> Der Tag muss ein ganzer Zahlenwert zwischen 1 und 31 sein </p>';
 				?>
 			</div>			
 
@@ -49,19 +49,17 @@
 				<label for="birthdayMonth"> Monat </label>
 				<input type="text" name="birthdayMonth" value="<?php echo @$_GET['month']; ?>">
 			</div>
-
 			<?php
-				if($problem == 'month') echo '<p> Der Monat muss ein Zahlenwert zwischen 1 und 12 sein </p>';
+				if($problem == 'month') echo '<p> Der Monat muss ein ganzer Zahlenwert zwischen 1 und 12 sein </p>';
 			?>
 
 			<div class="form-row">
 				<label for="birthdayYear"> Jahr </label>
 				<input type="text" name="birthdayYear" value="<?php echo @$_GET['year']; ?>">
 			</div>
-
 			<?php
-				if($problem == 'year') echo '<p> Das Jahr muss ein Zahlenwert zwischen 1880 und 2020 sein <br>
-				                             Für Geburtsjahre ab 1970 ist auch die Eingabe  2 Ziffern möglich (88 statt 1988)  </p>';
+				if($problem == 'year') echo '<p> Das Jahr muss ein ganzer Zahlenwert zwischen 1880 und 2020 sein <br>
+				                             Für Geburtsjahre ab 1970 ist auch die Eingabe  2 Ziffern zulässig (z.B. 88 statt 1988)  </p>';
 			?>
 			
 			<div class='form-row'>
